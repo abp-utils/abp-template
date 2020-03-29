@@ -1,0 +1,25 @@
+{
+    "name": "abp-utils/app-template",
+    "description": "Template ABP framework",
+    "type": "project",
+    "license": "public",
+    "require": {
+        "abp-utils/abp": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:abp-utils/abp.git"
+        }
+    ],
+    "authors": [
+        {
+            "name": "KreeK",
+            "email": "kirillnovikovofficial@gmail.com"
+        }
+    ]
+}

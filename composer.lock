@@ -1,0 +1,61 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "e9ede6ac48e6695ee2b4911ffe508666",
+    "packages": [
+        {
+            "name": "abp-utils/abp",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/abp-utils/abp.git",
+                "reference": "5776628bdb48c43f21ec4019386fe49171c58f06"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/abp-utils/abp/zipball/5776628bdb48c43f21ec4019386fe49171c58f06",
+                "reference": "5776628bdb48c43f21ec4019386fe49171c58f06",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "abp\\": "",
+                    "Abp\\": ""
+                }
+            },
+            "license": [
+                "public"
+            ],
+            "authors": [
+                {
+                    "name": "KreeK",
+                    "email": "kirillnovikovofficial@gmail.com"
+                }
+            ],
+            "description": "MVC framework app builder php",
+            "support": {
+                "source": "https://github.com/abp-utils/abp/tree/master",
+                "issues": "https://github.com/abp-utils/abp/issues"
+            },
+            "time": "2020-03-29T10:29:28+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "abp-utils/abp": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
+}
