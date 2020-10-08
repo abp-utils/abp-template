@@ -2,11 +2,7 @@
 
 namespace controller;
 
-use abp\exception\DatabaseException;
 use component\controller\CommonController;
-use abp\core\Request;
-use component\exception\UserException;
-use model\User;
 
 class AboutController extends CommonController
 {

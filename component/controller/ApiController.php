@@ -11,7 +11,7 @@ use abp\core\Request;
  */
 class ApiController extends CommonController
 {
-    public function beforeAction()
+    public function beforeAction(): bool
     {
         if(!Request::isPost()) {
             Api::message(true, 'Method Not Allowed. This URL can only handle the following request methods: ' . Api::supportMethod());

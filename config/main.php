@@ -9,7 +9,7 @@ return [
         'host' => 'localhost',
         'name'=> 'db',
         'user' => 'root',
-        'pass' => 'password',
+        'pass' => '',
         'debug' => 'show',
         'charset'=>'utf8',
     ],

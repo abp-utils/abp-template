@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^(.*).css
+RewriteCond %{REQUEST_URI} !^(.*).png
+RewriteCond %{REQUEST_URI} !^(.*).jpg
+RewriteCond %{REQUEST_URI} !^(.*).js
+RewriteRule ^(.*)$ index.php?url_param=$1 [L]

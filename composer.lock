@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e9ede6ac48e6695ee2b4911ffe508666",
+    "content-hash": "eb6b899673b5fd8c017ecfc57857131d",
     "packages": [
         {
             "name": "abp-utils/abp",
-            "version": "dev-master",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/abp-utils/abp.git",
-                "reference": "5776628bdb48c43f21ec4019386fe49171c58f06"
+                "reference": "53ecfffc45d9d030d083603bf10afd5529ed8bc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/abp-utils/abp/zipball/5776628bdb48c43f21ec4019386fe49171c58f06",
-                "reference": "5776628bdb48c43f21ec4019386fe49171c58f06",
+                "url": "https://api.github.com/repos/abp-utils/abp/zipball/53ecfffc45d9d030d083603bf10afd5529ed8bc1",
+                "reference": "53ecfffc45d9d030d083603bf10afd5529ed8bc1",
                 "shasum": ""
             },
             "require": {
@@ -41,21 +41,72 @@
             ],
             "description": "MVC framework app builder php",
             "support": {
-                "source": "https://github.com/abp-utils/abp/tree/master",
+                "source": "https://github.com/abp-utils/abp/tree/v1.0.1",
                 "issues": "https://github.com/abp-utils/abp/issues"
             },
-            "time": "2020-03-29T10:29:28+00:00"
+            "time": "2020-10-08T18:34:55+00:00"
+        },
+        {
+            "name": "npm-asset/bootstrap",
+            "version": "4.4.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/bootstrap/-/bootstrap-4.4.1.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/font-awesome",
+            "version": "5.15.1",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:FortAwesome/Font-Awesome.git",
+                "reference": "57005cea6da7d1c67f3466974aecd25485f60452"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/57005cea6da7d1c67f3466974aecd25485f60452",
+                "reference": "57005cea6da7d1c67f3466974aecd25485f60452"
+            },
+            "type": "npm-asset"
+        },
+        {
+            "name": "npm-asset/fontsource-satisfy",
+            "version": "3.0.9",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/fontsource-satisfy/-/fontsource-satisfy-3.0.9.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/jquery",
+            "version": "3.5.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/jquery/-/jquery-3.5.1.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "abp-utils/abp": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=7.0.0"
+    },
     "platform-dev": [],
     "plugin-api-version": "1.1.0"
 }

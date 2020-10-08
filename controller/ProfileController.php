@@ -9,7 +9,7 @@ use component\exception\UserException;
 
 class ProfileController extends CommonController
 {
-    public function beforeAction()
+    public function beforeAction(): bool
     {
         if (!$this->_getUser()) {
             $this->redirect('');

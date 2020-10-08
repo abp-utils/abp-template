@@ -19,7 +19,7 @@ class ConsoleController extends CommonController
     /**
      * @return bool
      */
-    public function beforeAction()
+    public function beforeAction(): bool
     {
         if (php_sapi_name() !== 'cli') {
             Abp::debug('This script can only be run from the console');

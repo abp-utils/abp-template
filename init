@@ -1,0 +1,17 @@
+#!/usr/bin/php
+<?php
+file_put_contents(__DIR__ . '/config/main-local.php',
+    '<?php' . PHP_EOL .
+    '//Default config for MAMP' . PHP_EOL .
+    'return [' . PHP_EOL .
+    '   \'db\' => [ ' . PHP_EOL .
+    '       \'host\'    => \'127.0.0.1\',' . PHP_EOL .
+    '       \'name\'    => \'db\',' . PHP_EOL .
+    '       \'port\'    => \'8889\',' . PHP_EOL .
+    '       \'user\'    => \'root\',' . PHP_EOL .
+    '       \'pass\'    => \'root\',' . PHP_EOL .
+    '       \'debug\'   => \'show\',' . PHP_EOL .
+    '       \'charset\' => \'utf8\',' . PHP_EOL .
+    '   ],' . PHP_EOL .
+    '];' . PHP_EOL
+);
