@@ -8,8 +8,12 @@
 
     <form method="POST" action="/reg">
         <div class="form-group">
-            <label for="exampleInputEmail1">Email или логин</label>
+            <label for="exampleInputEmail1">Имя пользователя</label>
             <input name="username" type="text" class="form-control" value="<?= $form->username?>">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input name="email" type="email" class="form-control" value="<?= $form->email?>">
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Пароль</label>

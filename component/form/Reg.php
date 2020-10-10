@@ -3,7 +3,7 @@
 namespace component\form;
 
 use abp\exception\DatabaseException;
-use component\exception\UserException;
+use abp\exception\UserException;
 use model\User;
 use Abp;
 
@@ -12,6 +12,7 @@ class Reg
     const MIN_PASSWORD_LENGTH = 8;
 
     public $username = '';
+    public $email = '';
     public $password = '';
 
     /**
@@ -21,15 +22,22 @@ class Reg
      */
     public function load($data)
     {
-        if (!isset($data['username']) && !isset($data['password'])) {
+        if (!isset($data['username'])
+            || !isset($data['email'])
+            || !isset($data['password'])
+        ) {
             return false;
         }
 
         $this->username = $data['username'];
+        $this->email = $data['email'];
         $this->password = $data['password'];
 
         if (empty($this->username)) {
-            throw new UserException('Поле "логин" не может быть пустым.');
+            throw new UserException('Поле "имя пользователя" не может быть пустым.');
+        }
+        if (empty($this->email)) {
+            throw new UserException('Поле "email" не может быть пустым.');
         }
         if (empty($this->password)) {
             throw new UserException('Поле "пароль" не может быть пустым.');
@@ -39,9 +47,6 @@ class Reg
         }
         if ($this->password !== $data['password_repeat']) {
             throw new UserException('Пароли не совпадают.');
-        }
-        if (User::find()->byUsername($this->username)->one()) {
-            throw new UserException('Пользователь с именем ' . $data['username'] . ' уже существует в системе.');
         }
 
         return true;
@@ -53,21 +58,11 @@ class Reg
      */
     public function reg()
     {
-        $hash = User::HASH_TYPE;
-        $password = $hash($this->password);
-
         $user = new User();
-        $user->username = $this->username;
-        $user->hash = $password;
-        $user->role = User::USER_ROLE;
-
-        if (!$user->save()) {
-            throw new DatabaseException();
-        }
-
-        Abp::setCookie('username', $this->username);
-        Abp::setCookie('hash', $password);
-
-        return true;
+        $user->reg([
+            'username' => $this->username,
+            'email' => $this->email,
+            'password' => $this->password,
+        ]);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace component\form;
 
-use component\exception\UserException;
+use abp\exception\UserException;
 use model\User;
 use Abp;
 

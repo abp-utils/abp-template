@@ -15,11 +15,7 @@ Use abp\database\ActiveRecord;
  */
 class User extends ActiveRecord
 {
-
-    /**
-     * @return array
-     */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'user_id' => '#',
