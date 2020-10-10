@@ -2,7 +2,7 @@
 
 namespace model\schema;
 
-Use abp\database\ActiveRecord;
+use abp\database\ActiveRecord;
 
 /**
  * Class User
@@ -10,8 +10,15 @@ Use abp\database\ActiveRecord;
  *
  * @property int $user_id
  * @property string $username
+ * @property string $email
  * @property string $hash
- * @property int $role
+ * @property string $role
+ * @property string $token
+ * @property string $token_confirm
+ * @property int $is_confirm
+ * @property int $is_active
+ * @property int $created_time
+ * @property int $updated_time
  */
 class User extends ActiveRecord
 {
@@ -19,27 +26,21 @@ class User extends ActiveRecord
     {
         return [
             'user_id' => '#',
-            'username' => 'Имя пользователя',
-            'role' => 'Роль',
+            'username' => 'username',
+            'email' => 'email',
+            'hash' => 'hash',
+            'role' => 'role',
+            'token' => 'token',
+            'token_confirm' => 'token_confirm',
+            'is_confirm' => 'is_confirm',
+            'is_active' => 'is_active',
+            'created_time' => 'created_time',
+            'updated_time' => 'updated_time',
         ];
     }
 
-    public function changingAttributes()
-    {
-        return [
-            'hash' => function () {
-                $hash = \model\User::HASH_TYPE;
-                return $hash($this->hash);
-                },
-        ];
-    }
-
-    /**
-     * @return \model\query\User
-     */
     public static function find()
     {
         return new \model\query\User(get_called_class());
     }
-
 }

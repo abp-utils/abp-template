@@ -2,12 +2,12 @@
 
 namespace component\form;
 
+use abp\component\FormInterface;
 use abp\exception\DatabaseException;
 use abp\exception\UserException;
 use model\User;
-use Abp;
 
-class Reg
+class Reg implements FormInterface
 {
     const MIN_PASSWORD_LENGTH = 8;
 
@@ -15,12 +15,7 @@ class Reg
     public $email = '';
     public $password = '';
 
-    /**
-     * @param array $data
-     * @return bool
-     * @throws UserException
-     */
-    public function load($data)
+    public function validate(array $data): bool
     {
         if (!isset($data['username'])
             || !isset($data['email'])
@@ -52,17 +47,9 @@ class Reg
         return true;
     }
 
-    /**
-     * @return bool
-     * @throws DatabaseException
-     */
-    public function reg()
+    public function execute(): bool
     {
         $user = new User();
-        $user->reg([
-            'username' => $this->username,
-            'email' => $this->email,
-            'password' => $this->password,
-        ]);
+        $user->reg($this->username, $this->email, $this->password);
     }
 }

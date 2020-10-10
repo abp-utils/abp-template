@@ -26,6 +26,9 @@ class CommonController extends Controller
      */
     protected function _getUser($userId = null)
     {
+        $user = new User();
+        $user->username = 'test';
+        $user->save();
         if ($userId !== null) {
             return User::find()->byId($userId)->one();
         }

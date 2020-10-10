@@ -2,21 +2,17 @@
 
 namespace component\form;
 
+use abp\component\FormInterface;
 use abp\exception\UserException;
 use model\User;
 use Abp;
 
-class Login
+class Login implements FormInterface
 {
     public $username = '';
     public $password = '';
 
-    /**
-     * @param array $data
-     * @return bool
-     * @throws UserException
-     */
-    public function load($data)
+    public function validate(array $data): bool
     {
         if (!isset($data['username']) && !isset($data['password'])) {
             return false;
@@ -34,10 +30,7 @@ class Login
         return true;
     }
 
-    /**
-     * @return bool
-     */
-    public function login()
+    public function execute(): bool
     {
         $hash = User::HASH_TYPE;
         $password = $hash($this->password);
