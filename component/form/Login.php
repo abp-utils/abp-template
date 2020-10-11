@@ -3,14 +3,19 @@
 namespace component\form;
 
 use abp\component\FormInterface;
+use abp\component\Security;
 use abp\exception\UserException;
 use model\User;
 use Abp;
+use model\UserIp;
+use model\UserSession;
 
 class Login implements FormInterface
 {
     public $username = '';
     public $password = '';
+    /** @var User $user */
+    private $user;
 
     public function validate(array $data): bool
     {
@@ -23,21 +28,19 @@ class Login implements FormInterface
         if (empty($data['password'])) {
             throw new UserException('Поле "пароль" не может быть пустым.');
         }
-
         $this->username = $data['username'];
         $this->password = $data['password'];
+
+        $this->user = User::find()->byUserNameOrEmail($this->username)->one();
+        if ($this->user === null) {
+            throw new UserException('Пользователь не найден.');
+        }
 
         return true;
     }
 
     public function execute(): bool
     {
-        $hash = User::HASH_TYPE;
-        $password = $hash($this->password);
-
-        Abp::setCookie('username', $this->username);
-        Abp::setCookie('hash', $password);
-
-        return (bool) User::find()->byUsername($this->username)->byhash($password)->one();
+        return $this->user->login($this->password);
     }
 }

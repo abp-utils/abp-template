@@ -20,7 +20,7 @@
 
 <?= $user->textInput('email') ?>
 
-<?= $user->textInputDisable('token') ?>
+<?= $user->textInputDisable('token', '', '', $user->getToken()) ?>
 
 <?= $user->textInput('hash', 'Смена пароля', 'Введите новый пароль', '', 'password') ?>
 

@@ -17,6 +17,8 @@ use abp\database\ActiveRecord;
  * @property int $challenge_code
  * @property int $created_time
  * @property int $updated_time
+ *
+ * @property \model\User $User
  */
 class UserSession extends ActiveRecord
 {
@@ -32,6 +34,13 @@ class UserSession extends ActiveRecord
             'challenge_code' => 'challenge_code',
             'created_time' => 'created_time',
             'updated_time' => 'updated_time',
+        ];
+    }
+
+    public static function relation(): array
+    {
+        return [
+            \model\User::class => ['one', 'user_id'],
         ];
     }
 

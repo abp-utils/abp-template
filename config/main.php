@@ -19,6 +19,7 @@ return [
             'login' => 'site/login',
             'logout' => 'site/logout',
             'reg' => 'site/reg',
+            'challenge' => 'site/challenge',
         ],
     ],
 ];

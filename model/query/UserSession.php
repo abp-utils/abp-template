@@ -1,6 +1,7 @@
 <?php
 namespace model\query;
 
+use abp\component\Security;
 Use abp\database\ActiveQuery;
 
 /**
@@ -21,7 +22,16 @@ class UserSession extends ActiveQuery
 
     public function byToken(string $token): self
     {
-        return $this->where('token', sha1($token));
+        return $this->where('token', Security::generateHash($token));
+    }
+
+    public function byUniqueKey(string $userId, string $token)
+    {
+        return $this->whereContidion([
+            ['user_id' => $userId],
+            'and',
+            ['token' => Security::generateHash($token)],
+        ]);
     }
 
     /**

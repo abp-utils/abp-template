@@ -56,6 +56,7 @@ class Reg implements FormInterface
     public function execute(): bool
     {
         $user = new User();
-        return $user->reg($this->username, $this->email, $this->password);
+        $user->reg($this->username, $this->email, $this->password);
+        return true;
     }
 }

@@ -20,7 +20,16 @@ class User extends ActiveQuery
         return $this->where(['email' => $email]);
     }
 
-    public function byhash(string $hash): self
+    public function byUserNameOrEmail(string $username): self
+    {
+        return $this->whereContidion([
+            ['username' => $username],
+            'or',
+            ['email' => $username],
+        ]);
+    }
+
+    public function byHash(string $hash): self
     {
         return $this->where(['hash' => $hash]);
     }
