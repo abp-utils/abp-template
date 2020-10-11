@@ -26,11 +26,11 @@ class User extends ActiveRecord
     {
         return [
             'user_id' => '#',
-            'username' => 'username',
-            'email' => 'email',
+            'username' => 'Имя пользователя',
+            'email' => 'e-mail',
             'hash' => 'hash',
-            'role' => 'role',
-            'token' => 'token',
+            'role' => 'Роль',
+            'token' => 'Токен',
             'token_confirm' => 'token_confirm',
             'is_confirm' => 'is_confirm',
             'is_active' => 'is_active',

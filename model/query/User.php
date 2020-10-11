@@ -7,23 +7,27 @@ class User extends ActiveQuery
 {
     public function byId(string $id): self
     {
-        return $this->where('user_id', $id);
+        return $this->where(['user_id' => $id]);
     }
 
     public function byUsername(string $username): self
     {
-        return $this->where('username', $username);
+        return $this->where(['username' => $username]);
     }
 
     public function byEmail(string $email): self
     {
-        return $this->where('email', $email);
+        return $this->where(['email' => $email]);
     }
-
 
     public function byhash(string $hash): self
     {
-        return $this->where('hash', $hash);
+        return $this->where(['hash' => $hash]);
+    }
+
+    public function active(): self
+    {
+        return $this->where(['is_active' => true]);
     }
 
     /**

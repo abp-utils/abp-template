@@ -1,6 +1,6 @@
 <?php
 use model\User;
-/** @var User $user */
+/** @var User|null $user */
 /** @var $this \component\controller\CommonController */
 ?>
 <header>
@@ -15,7 +15,7 @@ use model\User;
                 <li class="nav-item">
                     <a class="nav-link" href="/about">О нас</a>
                 </li>
-                <?php if (!$user): ?>
+                <?php if ($user === null): ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Вход</a>
                 </li>
@@ -35,4 +35,7 @@ use model\User;
     </nav>
 </header>
 <main role="main" class="flex-shrink-0">
-<div class="container pt-5">
+    <?php if ($user && !$user->isConfirmEmail()): ?>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">Ваш e-mail не подтвержден. Нажмите сюда для отправки повторного письма.</div>
+    <?php endif; ?>
+<div class="container pt-5 pb-5">

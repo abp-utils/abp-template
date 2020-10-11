@@ -9,6 +9,6 @@ class DefaultController extends CommonController
 {
     public function indexAction()
     {
-        Abp::redirect('login');
+        Abp::redirect('about');
     }
 }

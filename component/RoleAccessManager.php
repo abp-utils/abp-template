@@ -3,10 +3,20 @@
 namespace component;
 
 use abp\component\RoleAccessManagerInterface;
-use model\User;
 
 class RoleAccessManager implements RoleAccessManagerInterface
 {
+    public const USER_ROLE = 'user';
+    public const ADMIN_ROLE = 'admin';
+
+    public static function getRoles(): array
+    {
+        return [
+            self::USER_ROLE => 'Пользователь',
+            self::ADMIN_ROLE => 'Администратор',
+        ];
+    }
+
     public function roleColumn(): string
     {
         return 'role';
@@ -14,16 +24,16 @@ class RoleAccessManager implements RoleAccessManagerInterface
 
     public function setDefaultRole(): string
     {
-        return User::USER_ROLE;
+        return self::USER_ROLE;
     }
 
     public function setRoleAccess(): array
     {
         return [
-            User::USER_ROLE => [
+            self::USER_ROLE => [
                 'viewAboutPage',
             ],
-            User::ADMIN_ROLE => [
+            self::ADMIN_ROLE => [
                 'viewAllUsers',
                 'manageAllUsers',
             ],
@@ -33,8 +43,8 @@ class RoleAccessManager implements RoleAccessManagerInterface
     public function setRolesDepends(): array
     {
         return [
-            User::ADMIN_ROLE => [User::USER_ROLE],
-            User::USER_ROLE => [],
+            self::ADMIN_ROLE => [self::USER_ROLE],
+            self::USER_ROLE => [],
         ];
     }
 }

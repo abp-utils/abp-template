@@ -18,6 +18,10 @@
 
 <?= $user->textInput('username') ?>
 
+<?= $user->textInput('email') ?>
+
+<?= $user->textInputDisable('token') ?>
+
 <?= $user->textInput('hash', 'Смена пароля', 'Введите новый пароль', '', 'password') ?>
 
 <?= $user->textInputDisable('role', '', '', $user->getPrintRole()) ?>
