@@ -43,6 +43,12 @@ class Reg implements FormInterface
         if ($this->password !== $data['password_repeat']) {
             throw new UserException('Пароли не совпадают.');
         }
+        if (User::find()->byUsername($this->username)->exist()) {
+            throw new UserException("Пользователь с именем {$this->username} уже существует.");
+        }
+        if (User::find()->byEmail($this->email)->exist()) {
+            throw new UserException("Пользователь с email {$this->email} уже существует.");
+        }
 
         return true;
     }
@@ -50,6 +56,6 @@ class Reg implements FormInterface
     public function execute(): bool
     {
         $user = new User();
-        $user->reg($this->username, $this->email, $this->password);
+        return $user->reg($this->username, $this->email, $this->password);
     }
 }

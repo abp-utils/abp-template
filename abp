@@ -8,5 +8,6 @@ $config = array_merge(
     require(__DIR__ . '/config/main.php'),
     require(__DIR__ . '/config/main-local.php')
 );
+
 Abp::init($config);
 exit(0);

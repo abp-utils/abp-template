@@ -55,14 +55,15 @@ class SiteController extends CommonController
         $form = new Reg();
 
         try {
-            if ($form->load(Abp::post())) {
-                if ($form->reg()) {
+            if ($form->validate(Abp::post())) {
+                if ($form->execute()) {
                     $this->redirect('');
                 }
             }
         } catch (UserException $e) {
             $this->addError($e->getMessage());
-        } catch (\Throwable $t) {
+        } catch (\Throwable $e) {
+            throw $e;
             $this->addError('Неизвестная ошибка.');
         }
 

@@ -2,10 +2,6 @@
 use model\User;
 /** @var User $user */
 /** @var $this \component\controller\CommonController */
-
-if (!isset($user)) {
-    $user = User::this();
-}
 ?>
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">

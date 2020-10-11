@@ -5,29 +5,23 @@ Use abp\database\ActiveQuery;
 
 class User extends ActiveQuery
 {
-    /**
-     * @param int $id
-     * @return $this
-     */
-    public function byId($id)
+    public function byId(string $id): self
     {
         return $this->where('user_id', $id);
     }
 
-    /**
-     * @param string $username
-     * @return $this
-     */
-    public function byUsername($username)
+    public function byUsername(string $username): self
     {
         return $this->where('username', $username);
     }
 
-    /**
-     * @param string $hash
-     * @return $this
-     */
-    public function byhash($hash)
+    public function byEmail(string $email): self
+    {
+        return $this->where('email', $email);
+    }
+
+
+    public function byhash(string $hash): self
     {
         return $this->where('hash', $hash);
     }

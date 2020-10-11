@@ -2,6 +2,7 @@
 
 namespace model;
 
+use abp\component\Security;
 use model\schema\User as UserSchema;
 
 class User extends UserSchema
@@ -9,24 +10,31 @@ class User extends UserSchema
     public const USER_ROLE = 'user';
     public const ADMIN_ROLE = 'admin';
 
-    public function reg(string $username, string $email, string $password)
+    public function reg(string $username, string $email, string $password): bool
     {
-        $token = $this->generateUserToken();
-        $tokenConfirm = $this->generateUserToken();
+        $token = Security::generateRandomString();
+        $tokenConfirm = Security::generateRandomString();
         $this->username = $username;
         $this->email = $email;
-        $this->hash = $this->hashUserPassword($password);
-        $this->token = sha1($token);
-        $this->token_confirm = sha1($tokenConfirm);
+        $this->hash = Security::generateHashWithSalt($password);
+        $this->role = self::USER_ROLE;
+        $this->token = Security::generateHash($token);
+        $this->token_confirm = Security::generateHash($tokenConfirm);
+        try {
+            \Abp::$db->beginTransaction();
+            $this->save();
+            $userSession = UserSession::ensureSession($this);
+            UserIp::ensureIp($this, \Abp::$user->getIp());
+            \Abp::$db->commit();
+            return true;
+        } catch (\Throwable $e) {
+            \Abp::$db->rollBack();
+            throw $e;
+        }
     }
 
-    private function hashUserPassword(string $password): string
+    public function isNewIp(): bool
     {
-        return password_hash($password, PASSWORD_ARGON2ID);
-    }
-
-    private function generateUserToken(): string
-    {
-        return sha1(uniqid('', true));
+        return UserIp::find()->byUniqueKey($this, \Abp::$user->getIp())->exist();
     }
 }

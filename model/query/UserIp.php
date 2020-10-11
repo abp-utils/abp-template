@@ -14,6 +14,15 @@ class UserIp extends ActiveQuery
         return $this->where('user_ip_id', $id);
     }
 
+    public function byUniqueKey(\model\User $user, string $ip): self
+    {
+        return $this->whereContidion([
+            ['user_id' => $user->user_id],
+            'and',
+            ['ip' => $ip],
+        ]);
+    }
+
     /**
      * @return \model\UserIp
      */

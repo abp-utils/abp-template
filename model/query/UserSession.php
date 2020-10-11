@@ -14,6 +14,16 @@ class UserSession extends ActiveQuery
         return $this->where('user_session_id', $id);
     }
 
+    public function byUser(\model\User $user): self
+    {
+        return $this->where('user_id', $user->user_id);
+    }
+
+    public function byToken(string $token): self
+    {
+        return $this->where('token', sha1($token));
+    }
+
     /**
      * @return \model\UserSession
      */
