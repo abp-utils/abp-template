@@ -10,11 +10,9 @@ return [
         'name'=> 'db',
         'user' => 'root',
         'pass' => '',
-        'debug' => 'show',
         'charset'=>'utf8',
     ],
     'router' => [
-        'api' => 'api',
         'alias' => [
             'login' => 'site/login',
             'logout' => 'site/logout',

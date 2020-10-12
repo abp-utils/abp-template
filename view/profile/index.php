@@ -2,7 +2,7 @@
 
 /** @var \model\User $user */
 
-?>
+use component\RoleAccessManager; ?>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -24,6 +24,6 @@
 
 <?= $user->textInput('hash', 'Смена пароля', 'Введите новый пароль', '', 'password') ?>
 
-<?= $user->textInputDisable('role', '', '', $user->getPrintRole()) ?>
+<?= $user->dropDownListDisable('role', RoleAccessManager::getRoles()) ?>
 
 <?= $user->endForm(true, $user->_isNewRecord ? 'Создать' : 'Сохранить') ?>

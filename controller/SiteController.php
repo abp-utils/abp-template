@@ -93,30 +93,22 @@ class SiteController extends CommonController
     {
         $this->title = 'Подтверждение аккаунта';
         $form = new Challenge();
-        echo 'test 1' . PHP_EOL;
         try {
             if ($form->validate(Abp::post())) {
-                echo 'test 2' . PHP_EOL;
                 if ($form->execute()) {
-                    echo 'test 3' . PHP_EOL;
                     $this->redirect();
                 }
             }
         } catch (UserException $e) {
-            echo 'test exp' . PHP_EOL;
             $this->addError($e->getMessage());
         } catch (\Throwable $e) {
-            echo 'test exp2' . PHP_EOL;
             $this->addError('Неизвестная ошибка.');
         }
-        echo 'test 4' . PHP_EOL;
         $userSession = $this->getUserSession();
         if ($userSession === null) {
-            echo 'test 5' . PHP_EOL;
             $this->redirect();
         }
         $user = $userSession->User;
-        echo 'test 6' . PHP_EOL;
         $this->render([
             'form' => $form,
             'user' => $user,
