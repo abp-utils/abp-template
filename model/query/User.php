@@ -5,31 +5,38 @@ Use abp\database\ActiveQuery;
 
 class User extends ActiveQuery
 {
-    /**
-     * @param int $id
-     * @return $this
-     */
-    public function byId($id)
+    public function byId(string $id): self
     {
-        return $this->where('user_id', $id);
+        return $this->where(['user_id' => $id]);
     }
 
-    /**
-     * @param string $username
-     * @return $this
-     */
-    public function byUsername($username)
+    public function byUsername(string $username): self
     {
-        return $this->where('username', $username);
+        return $this->where(['username' => $username]);
     }
 
-    /**
-     * @param string $hash
-     * @return $this
-     */
-    public function byhash($hash)
+    public function byEmail(string $email): self
     {
-        return $this->where('hash', $hash);
+        return $this->where(['email' => $email]);
+    }
+
+    public function byUserNameOrEmail(string $username): self
+    {
+        return $this->whereContidion([
+            ['username' => $username],
+            'or',
+            ['email' => $username],
+        ]);
+    }
+
+    public function byHash(string $hash): self
+    {
+        return $this->where(['hash' => $hash]);
+    }
+
+    public function active(): self
+    {
+        return $this->where(['is_active' => true]);
     }
 
     /**

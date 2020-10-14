@@ -1,11 +1,8 @@
 <?php
 use model\User;
-/** @var User $user */
-/** @var $this \component\controller\CommonController */
-
-if (!isset($user)) {
-    $user = User::this();
-}
+/** @var User|null $user */
+/** @var \component\controller\CommonController $this*/
+/** @var bool|null $challenge */
 ?>
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -19,7 +16,7 @@ if (!isset($user)) {
                 <li class="nav-item">
                     <a class="nav-link" href="/about">О нас</a>
                 </li>
-                <?php if (!$user): ?>
+                <?php if ($user === null || isset($challenge)): ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Вход</a>
                 </li>
@@ -39,4 +36,7 @@ if (!isset($user)) {
     </nav>
 </header>
 <main role="main" class="flex-shrink-0">
-<div class="container pt-5">
+    <?php if ($user && !$user->isConfirmEmail() && (!isset($challenge))): ?>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">Ваш e-mail не подтвержден. Нажмите сюда для отправки повторного письма.</div>
+    <?php endif; ?>
+<div class="container pt-5 pb-5">

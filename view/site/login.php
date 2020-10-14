@@ -15,6 +15,9 @@
         <label for="exampleInputPassword1">Пароль</label>
         <input name="password" type="password" class="form-control" value="<?= $form->password ?>">
     </div>
+    <div class="form-group">
+        <a href="/restore-password">Забыли пароль</a>
+    </div>
     <?= $this->showNotification() ?>
     <button type="submit" class="btn btn-primary">Вход</button>
 </form>

@@ -10,6 +10,8 @@ class AboutController extends CommonController
     {
         $this->title = 'О нас';
 
-        $this->render([]);
+        $this->render([
+            'user' => $this->getUser(),
+        ]);
     }
 }

@@ -2,21 +2,22 @@
 
 namespace component\form;
 
-use component\exception\UserException;
+use abp\component\FormInterface;
+use abp\component\Security;
+use abp\exception\UserException;
 use model\User;
 use Abp;
+use model\UserIp;
+use model\UserSession;
 
-class Login
+class Login implements FormInterface
 {
     public $username = '';
     public $password = '';
+    /** @var User $user */
+    private $user;
 
-    /**
-     * @param array $data
-     * @return bool
-     * @throws UserException
-     */
-    public function load($data)
+    public function validate(array $data): bool
     {
         if (!isset($data['username']) && !isset($data['password'])) {
             return false;
@@ -27,24 +28,19 @@ class Login
         if (empty($data['password'])) {
             throw new UserException('Поле "пароль" не может быть пустым.');
         }
-
         $this->username = $data['username'];
         $this->password = $data['password'];
+
+        $this->user = User::find()->byUserNameOrEmail($this->username)->one();
+        if ($this->user === null) {
+            throw new UserException('Пользователь не найден.');
+        }
 
         return true;
     }
 
-    /**
-     * @return bool
-     */
-    public function login()
+    public function execute(): bool
     {
-        $hash = User::HASH_TYPE;
-        $password = $hash($this->password);
-
-        Abp::setCookie('username', $this->username);
-        Abp::setCookie('hash', $password);
-
-        return (bool) User::find()->byUsername($this->username)->byhash($password)->one();
+        return $this->user->login($this->password);
     }
 }

@@ -2,7 +2,7 @@
 
 /** @var \model\User $user */
 
-?>
+use component\RoleAccessManager; ?>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -18,8 +18,16 @@
 
 <?= $user->textInput('username') ?>
 
-<?= $user->textInput('hash', 'Смена пароля', 'Введите новый пароль', '', 'password') ?>
+<?= $user->textInput('email') ?>
 
-<?= $user->textInputDisable('role', '', '', $user->getPrintRole()) ?>
+<?= $user->textInputDisable('token_hash', '', '', $user->getToken()) ?>
+
+<?= $user->passwordInput('old_password') ?>
+
+<?= $user->passwordInput('new_password') ?>
+
+<?= $user->passwordInput('repeat_password') ?>
+
+<?= $user->dropDownListDisable('role', RoleAccessManager::getRoles()) ?>
 
 <?= $user->endForm(true, $user->_isNewRecord ? 'Создать' : 'Сохранить') ?>
