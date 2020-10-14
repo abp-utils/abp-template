@@ -20,9 +20,13 @@ use component\RoleAccessManager; ?>
 
 <?= $user->textInput('email') ?>
 
-<?= $user->textInputDisable('token', '', '', $user->getToken()) ?>
+<?= $user->textInputDisable('token_hash', '', '', $user->getToken()) ?>
 
-<?= $user->textInput('hash', 'Смена пароля', 'Введите новый пароль', '', 'password') ?>
+<?= $user->passwordInput('old_password') ?>
+
+<?= $user->passwordInput('new_password') ?>
+
+<?= $user->passwordInput('repeat_password') ?>
 
 <?= $user->dropDownListDisable('role', RoleAccessManager::getRoles()) ?>
 
